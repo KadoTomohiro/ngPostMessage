@@ -13,6 +13,10 @@ export class AppComponent {
   pulleMesage: string;
 
   constructor() {
+    // windowオブジェクトは適切なサービスに隠蔽
+    // 送信元のoriginは必ずチェックする。チェック対象の値はenvironmentに定義
+    // event.dataの型をインターフェースとして合意する。
+    // この処理まるごと共通サービス化したほうがいい。
     fromEvent(window, 'message')
       .pipe(
         filter((event: MessageEvent) => event.origin === 'http://localhost:4201'),

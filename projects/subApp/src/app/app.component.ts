@@ -11,6 +11,9 @@ export class AppComponent {
   postValue: string;
 
   post() {
+    // window.openerは自身を開いたページを参照している。
+    // windowオブジェクトは直に扱うべきではない。テスタビリティのためにも適切なサービスに隠蔽すること
+    // targetOriginはenvironmentに定義して切り替えられるようにする
     window.opener.postMessage(this.postValue, 'http://localhost:4200');
   }
 }
